@@ -9,6 +9,10 @@ export interface GrafoNode {
   languagesInfo?: Record<string, number>;
 }
 
+/**
+ * Representa uma aresta no grafo bipartido.
+ * Conecta obrigatoriamente um nó do tipo 'repositorio' a um nó do tipo 'tecnologia'.
+ */
 export interface GrafoLink {
   source: string;
   target: string;
