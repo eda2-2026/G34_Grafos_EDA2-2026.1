@@ -18,6 +18,9 @@ export interface GrafoLink {
   target: string;
 }
 
+/**
+ * Estrutura de dados retornada pelo endpoint do backend contendo os nós e as arestas do grafo.
+ */
 export interface GrafoResponse {
   nodes: GrafoNode[];
   links: GrafoLink[];
