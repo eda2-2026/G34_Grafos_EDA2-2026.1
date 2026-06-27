@@ -50,4 +50,38 @@ export class GitHubService {
 
     return repos;
   }
+
+  /**
+   * Obtém as linguagens de um repositório específico.
+   */
+  async fetchRepoLanguages(languagesUrl: string): Promise<Record<string, number>> {
+    const response = await fetch(languagesUrl, { headers: this.getHeaders() });
+    if (!response.ok) {
+      throw new Error(`Falha ao obter linguagens: ${response.statusText}`);
+    }
+    return (await response.json()) as Record<string, number>;
+  }
+
+  /**
+   * Executa uma lista de tarefas assíncronas com um limite de concorrência especificado.
+   */
+  async runWithLimit<T, R>(limit: number, items: T[], fn: (item: T) => Promise<R>): Promise<R[]> {
+    const results: R[] = [];
+    const executing: Promise<any>[] = [];
+
+    for (const item of items) {
+      const p = Promise.resolve().then(() => fn(item));
+      results.push(p as any);
+
+      if (limit <= items.length) {
+        const e: any = p.then(() => executing.splice(executing.indexOf(e), 1));
+        executing.push(e);
+        if (executing.length >= limit) {
+          await Promise.race(executing);
+        }
+      }
+    }
+
+    return Promise.all(results);
+  }
 }
