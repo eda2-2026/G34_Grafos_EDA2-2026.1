@@ -3,6 +3,14 @@
 O **TechGraph** é uma aplicação web desenvolvida para analisar e visualizar de forma interativa a stack tecnológica de uma organização do GitHub. A solução mapeia os repositórios e suas linguagens utilizando a teoria de grafos, mais especificamente um **Grafo Bipartido**, permitindo identificar tendências de tecnologias, agrupamento de projetos e popularidade de linguagens na organização.
 
 ---
+## Alunos
+| Matrícula | Aluno |
+| -- | -- |
+| 232037786 | Gustavo da Costa Cintra |
+| 211030765 | Guilherme Storch de Oliveira | 
+
+> Vídeo de apresentação do trabalho: < # > 
+---
 
 ## Fundamentação Teórica (O Grafo Bipartido)
 
