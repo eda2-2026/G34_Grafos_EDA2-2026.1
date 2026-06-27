@@ -22,9 +22,15 @@ export function buildBipartiteGraph(
       languagesInfo: languages,
     });
 
-    // Mapeia temporariamente as tecnologias encontradas
+    // Mapeia e cria conexões para cada tecnologia utilizada
     for (const tech of Object.keys(languages)) {
+      const techId = `tech_${tech}`;
       technologies.add(tech);
+
+      links.push({
+        source: repoId,
+        target: techId,
+      });
     }
   }
 
