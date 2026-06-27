@@ -4,5 +4,9 @@
   "private": true,
   "main": "src/types.ts",
   "types": "src/types.ts",
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "bun test"
+  }
 }
