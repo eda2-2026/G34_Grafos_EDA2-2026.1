@@ -18,6 +18,10 @@ export class MemoryCache<T> {
   }
 
   get(): T | null {
+    if (!this.cache || Date.now() > this.expiryTime) {
+      this.clear();
+      return null;
+    }
     return this.cache;
   }
 }
