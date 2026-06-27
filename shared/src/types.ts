@@ -5,6 +5,8 @@ export interface GrafoNode {
   id: string;
   label: string;
   group: GrafoNodeType;
+  stars?: number;
+  languagesInfo?: Record<string, number>;
 }
 
 export interface GrafoLink {
