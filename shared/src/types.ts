@@ -1,8 +1,10 @@
 // Tipos compartilhados do TechGraph
+export type GrafoNodeType = 'repositorio' | 'tecnologia';
+
 export interface GrafoNode {
   id: string;
   label: string;
-  group: 'repositorio' | 'tecnologia';
+  group: GrafoNodeType;
 }
 
 export interface GrafoLink {
