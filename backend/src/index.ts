@@ -12,6 +12,9 @@ const cache = new MemoryCache<GrafoResponse>(60);
 
 const app = new Elysia()
   .use(cors())
+  .onError(({ code, error }) => {
+    console.error(`[Elysia Error] ${code}:`, error);
+  })
   .get('/', () => 'TechGraph Backend is Running')
   .get('/api/grafo-tecnologias', async () => {
     const startTime = Date.now();
