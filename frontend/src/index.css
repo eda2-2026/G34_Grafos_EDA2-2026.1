@@ -1,0 +1,126 @@
+:root {
+  --bg-color: #0f0f12;
+  --panel-bg: #16161e;
+  --text-color: #f7f7fb;
+  --text-muted: #9e9eb0;
+  --primary-color: #7aa2f7;
+  --secondary-color: #bb9af3;
+  --accent-color: #f7768e;
+  --border-color: #24283b;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  text-align: center;
+  margin-top: 4rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.error {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  text-align: center;
+  margin-top: 4rem;
+  padding: 1rem;
+  background-color: rgba(247, 118, 142, 0.1);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+}
+
+.debug-box {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.debug-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.badge {
+  background-color: var(--border-color);
+  color: var(--text-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.json-output {
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.2rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  max-height: 500px;
+  overflow-y: auto;
+  color: #a9b1d6;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
