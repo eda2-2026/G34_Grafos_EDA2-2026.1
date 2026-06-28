@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "elysia": "latest",
+    "@elysiajs/cors": "latest",
     "shared": "workspace:*"
   },
   "devDependencies": {
