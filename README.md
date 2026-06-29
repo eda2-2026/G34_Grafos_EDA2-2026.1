@@ -20,11 +20,14 @@ O grafo é renderizado em **3D interativo** com física de força (*force-direct
 
 ## Screenshots
 
-> Adicione screenshots do projeto em funcionamento após rodar a aplicação.
+**Dashboard — métricas e ranking de tecnologias**
+![Dashboard](docs/screenshot-dashboard.png)
 
-<!-- screenshot 1: visão geral do grafo 3D -->
-<!-- screenshot 2: painel de detalhes de um repositório -->
-<!-- screenshot 3: painel de controles com filtros ativos -->
+**Painel de controles — física, visual e filtros**
+![Controles](docs/screenshot-controls.png)
+
+**Busca — filtrando nós por tecnologia**
+![Busca](docs/screenshot-search.png)
 
 ## Instalação
 **Linguagem:** TypeScript<br>
