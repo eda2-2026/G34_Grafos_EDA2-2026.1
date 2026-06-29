@@ -9,6 +9,7 @@
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
+    "react-force-graph-3d": "^1.29.1",
     "shared": "workspace:*"
   },
   "devDependencies": {
