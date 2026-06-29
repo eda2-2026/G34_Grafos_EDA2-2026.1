@@ -46,7 +46,7 @@ const app = new Elysia()
     console.log(`[Sucesso] /api/grafo-tecnologias - Processado em ${duration}ms`);
     return graph;
   })
-  .listen(config.port);
+  .listen({ port: config.port, hostname: '0.0.0.0' });
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
 
