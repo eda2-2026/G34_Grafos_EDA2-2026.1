@@ -47,10 +47,18 @@ function App() {
           <h1>TechGraph</h1>
           <span className="header-sub">Mapeamento Tecnológico de Repositórios</span>
         </div>
+        <div className="legend">
+          <span className="legend-item">
+            <span className="legend-dot legend-dot-repo" />Repositório
+          </span>
+          <span className="legend-item">
+            <span className="legend-dot legend-dot-tech" />Tecnologia
+          </span>
+        </div>
         <div className="search-bar">
           <input
             type="search"
-            placeholder="Buscar tecnologia ou repositório..."
+            placeholder="🔍  Buscar tecnologia ou repositório..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="search-input"
