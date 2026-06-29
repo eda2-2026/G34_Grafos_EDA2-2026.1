@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import { GrafoResponse, GrafoNode } from 'shared';
 import { GraphVisualizer } from './GraphVisualizer';
+import { GraphControls, GraphConfig, DEFAULT_CONFIG } from './GraphControls';
 import { Sidebar } from './Sidebar';
 import { NodeDetail } from './NodeDetail';
 
@@ -22,13 +23,18 @@ async function fetchGraph(): Promise<GrafoResponse> {
 }
 
 function App() {
-  const [data, setData]       = useState<GrafoResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [hint, setHint]       = useState(0);
-  const [error, setError]     = useState<string | null>(null);
-  const [retryIn, setRetryIn] = useState<number | null>(null);
-  const [search, setSearch]   = useState('');
+  const [data, setData]         = useState<GrafoResponse | null>(null);
+  const [loading, setLoading]   = useState(true);
+  const [hint, setHint]         = useState(0);
+  const [error, setError]       = useState<string | null>(null);
+  const [retryIn, setRetryIn]   = useState<number | null>(null);
+  const [search, setSearch]     = useState('');
   const [selected, setSelected] = useState<GrafoNode | null>(null);
+  const [config, setConfig]     = useState<GraphConfig>(DEFAULT_CONFIG);
+
+  const updateConfig = useCallback((next: Partial<GraphConfig>) => {
+    setConfig(c => ({ ...c, ...next }));
+  }, []);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -40,7 +46,6 @@ function App() {
     } catch (err: any) {
       const msg: string = err.message ?? String(err);
       setError(msg);
-      // auto-retry in 8s if the backend is still loading
       let t = 8;
       setRetryIn(t);
       const iv = setInterval(() => {
@@ -55,7 +60,6 @@ function App() {
 
   useEffect(() => { load(); }, [load]);
 
-  // cycle loading hints
   useEffect(() => {
     if (!loading) return;
     const iv = setInterval(() => setHint(h => (h + 1) % LOADING_HINTS.length), 2200);
@@ -86,12 +90,10 @@ function App() {
           <h1>TechGraph</h1>
           <span className="header-sub">Mapeamento Tecnológico</span>
         </div>
-
         <div className="legend">
           <span className="legend-item"><span className="legend-dot legend-dot-repo" />Repositório</span>
           <span className="legend-item"><span className="legend-dot legend-dot-tech" />Tecnologia</span>
         </div>
-
         <div className="search-bar">
           <span className="search-icon">⌕</span>
           <input
@@ -121,20 +123,22 @@ function App() {
               <span className="error-icon">⚠</span>
               <p className="error-title">Não foi possível carregar o grafo</p>
               <p className="error-detail">{error}</p>
-              {retryIn !== null ? (
-                <p className="retry-msg">Tentando novamente em {retryIn}s…</p>
-              ) : (
-                <button className="retry-btn" onClick={load}>Tentar novamente</button>
-              )}
+              {retryIn !== null
+                ? <p className="retry-msg">Tentando novamente em {retryIn}s…</p>
+                : <button className="retry-btn" onClick={load}>Tentar novamente</button>}
             </div>
           )}
 
           {data && (
-            <GraphVisualizer
-              data={data}
-              highlightIds={highlightIds}
-              onNodeClick={setSelected}
-            />
+            <>
+              <GraphVisualizer
+                data={data}
+                config={config}
+                highlightIds={highlightIds}
+                onNodeClick={setSelected}
+              />
+              <GraphControls config={config} onChange={updateConfig} />
+            </>
           )}
         </main>
 
