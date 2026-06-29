@@ -345,6 +345,15 @@ body {
 
 .repo-stars { color: var(--muted); font-size: 0.75rem; }
 
+.github-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.github-link:hover { text-decoration: underline; }
+
 /* Scrollbars */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }

@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, useEffect } from 'react';
 import ForceGraph3D from 'react-force-graph-3d';
 import { GrafoResponse, GrafoNode } from 'shared';
 
@@ -17,6 +17,15 @@ const LINK_COLOR_DIM = 'rgba(36,40,59,0.2)';
 
 export function GraphVisualizer({ data, highlightIds, onNodeClick, onNodeHover }: Props) {
   const fgRef = useRef<any>(null);
+
+  // Adaptive charge strength: larger orgs need stronger repulsion to avoid overlap
+  useEffect(() => {
+    const fg = fgRef.current;
+    if (!fg) return;
+    const nodeCount = data.nodes.length;
+    const charge = Math.min(-30, -10 * Math.log2(Math.max(nodeCount, 2)));
+    fg.d3Force('charge')?.strength(charge);
+  }, [data.nodes.length]);
 
   const degree = useMemo(() => {
     const d: Record<string, number> = {};

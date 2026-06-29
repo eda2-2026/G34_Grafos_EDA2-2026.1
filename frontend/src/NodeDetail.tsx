@@ -54,6 +54,18 @@ export function NodeDetail({ node, data, onClose }: Props) {
                 <span className="detail-value">{node.stars}</span>
               </div>
             )}
+            {node.githubUrl && (
+              <div className="detail-row">
+                <a
+                  href={node.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="github-link"
+                >
+                  Ver no GitHub ↗
+                </a>
+              </div>
+            )}
             {node.languagesInfo && Object.keys(node.languagesInfo).length > 0 && (
               <div className="detail-section">
                 <h4 className="detail-section-title">Linguagens</h4>

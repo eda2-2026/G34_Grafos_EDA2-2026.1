@@ -19,7 +19,8 @@ export function buildBipartiteGraph(
       label: repo.name,
       group: "repositorio",
       stars: repo.stargazers_count,
-      languagesInfo: languages,
+      languagesInfo: Object.keys(languages).length > 0 ? languages : undefined,
+      githubUrl: repo.html_url,
     });
 
     // Mapeia e cria conexões para cada tecnologia utilizada

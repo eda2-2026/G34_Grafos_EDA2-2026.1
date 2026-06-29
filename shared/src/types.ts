@@ -7,6 +7,7 @@ export interface GrafoNode {
   group: GrafoNodeType;
   stars?: number;
   languagesInfo?: Record<string, number>;
+  githubUrl?: string;
 }
 
 /**
