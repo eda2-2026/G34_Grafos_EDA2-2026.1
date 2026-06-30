@@ -20,6 +20,8 @@ O grafo é renderizado em **3D interativo** com física de força (*force-direct
 
 ## Screenshots
 
+![Demo](docs/demo.gif)
+
 **Dashboard — métricas e ranking de tecnologias**
 ![Dashboard](docs/screenshot-dashboard.png)
 
