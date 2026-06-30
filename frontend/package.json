@@ -10,7 +10,8 @@
     "react": "latest",
     "react-dom": "latest",
     "react-force-graph-3d": "^1.29.1",
-    "shared": "workspace:*"
+    "shared": "workspace:*",
+    "three-spritetext": "^1.10.0"
   },
   "devDependencies": {
     "@types/react": "latest",

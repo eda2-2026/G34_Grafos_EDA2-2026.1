@@ -13,7 +13,6 @@ export function buildBipartiteGraph(
     const repoId = `repo_${repo.name}`;
     const languages = repoLanguages.get(repo.name) || {};
 
-    // Adiciona o nó do repositório
     nodesMap.set(repoId, {
       id: repoId,
       label: repo.name,
@@ -23,30 +22,20 @@ export function buildBipartiteGraph(
       githubUrl: repo.html_url,
     });
 
-    // Mapeia e cria conexões para cada tecnologia utilizada
     for (const tech of Object.keys(languages)) {
       const techId = `tech_${tech}`;
       technologies.add(tech);
-
-      links.push({
-        source: repoId,
-        target: techId,
-      });
+      links.push({ source: repoId, target: techId });
     }
   }
 
-  // Adiciona nós consolidados de tecnologia
   for (const tech of technologies) {
-    const techId = `tech_${tech}`;
-    nodesMap.set(techId, {
-      id: techId,
+    nodesMap.set(`tech_${tech}`, {
+      id: `tech_${tech}`,
       label: tech,
       group: "tecnologia",
     });
   }
 
-  return {
-    nodes: Array.from(nodesMap.values()),
-    links,
-  };
+  return { nodes: Array.from(nodesMap.values()), links };
 }

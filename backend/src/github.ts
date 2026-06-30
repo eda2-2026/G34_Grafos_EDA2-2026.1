@@ -2,7 +2,13 @@ import { AppConfig } from "./config";
 
 export interface GitHubRepo {
   name: string;
+  description: string | null;
   stargazers_count: number;
+  forks_count: number;
+  open_issues_count: number;
+  updated_at: string;
+  topics: string[];
+  archived: boolean;
   languages_url: string;
   html_url: string;
 }
@@ -19,21 +25,20 @@ export class GitHubService {
   private getHeaders(): HeadersInit {
     return {
       Authorization: `Bearer ${this.token}`,
+      // topics require this header on older API versions; harmless on newer
       Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
       "User-Agent": "TechGraph-App",
     };
   }
 
-  /**
-   * Obtém todos os repositórios da organização com suporte a paginação.
-   */
   async fetchRepositories(): Promise<GitHubRepo[]> {
     const repos: GitHubRepo[] = [];
     let page = 1;
     const perPage = 100;
 
     while (true) {
-      const url = `https://api.github.com/orgs/${this.org}/repos?per_page=${perPage}&page=${page}`;
+      const url = `https://api.github.com/orgs/${this.org}/repos?per_page=${perPage}&page=${page}&sort=updated`;
       const response = await fetch(url, { headers: this.getHeaders() });
 
       if (!response.ok) {
@@ -51,9 +56,6 @@ export class GitHubService {
     return repos;
   }
 
-  /**
-   * Obtém as linguagens de um repositório específico.
-   */
   async fetchRepoLanguages(languagesUrl: string): Promise<Record<string, number>> {
     const response = await fetch(languagesUrl, { headers: this.getHeaders() });
     if (!response.ok) {
@@ -62,9 +64,6 @@ export class GitHubService {
     return (await response.json()) as Record<string, number>;
   }
 
-  /**
-   * Executa uma lista de tarefas assíncronas com um limite de concorrência especificado.
-   */
   async runWithLimit<T, R>(limit: number, items: T[], fn: (item: T) => Promise<R>): Promise<R[]> {
     const results: R[] = [];
     const executing: Promise<any>[] = [];

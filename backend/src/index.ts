@@ -12,8 +12,11 @@ const cache = new MemoryCache<GrafoResponse>(60);
 
 const app = new Elysia()
   .use(cors())
-  .onError(({ code, error }) => {
+  .onError(({ code, error, set }) => {
     console.error(`[Elysia Error] ${code}:`, error);
+    set.headers['Content-Type'] = 'application/json';
+    set.status = 500;
+    return { error: String((error as any)?.message ?? error), code };
   })
   .get('/', () => 'TechGraph Backend is Running')
   .get('/api/grafo-tecnologias', async () => {
@@ -46,7 +49,7 @@ const app = new Elysia()
     console.log(`[Sucesso] /api/grafo-tecnologias - Processado em ${duration}ms`);
     return graph;
   })
-  .listen(config.port);
+  .listen({ port: config.port, hostname: '0.0.0.0' });
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
 

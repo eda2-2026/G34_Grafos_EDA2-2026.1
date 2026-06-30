@@ -1,27 +1,27 @@
-// Tipos compartilhados do TechGraph
 export type GrafoNodeType = 'repositorio' | 'tecnologia';
 
 export interface GrafoNode {
   id: string;
   label: string;
   group: GrafoNodeType;
+  // repo fields
   stars?: number;
+  forks?: number;
+  openIssues?: number;
+  description?: string;
+  topics?: string[];
+  updatedAt?: string;
+  archived?: boolean;
+  githubUrl?: string;
   languagesInfo?: Record<string, number>;
   githubUrl?: string;
 }
 
-/**
- * Representa uma aresta no grafo bipartido.
- * Conecta obrigatoriamente um nó do tipo 'repositorio' a um nó do tipo 'tecnologia'.
- */
 export interface GrafoLink {
   source: string;
   target: string;
 }
 
-/**
- * Estrutura de dados retornada pelo endpoint do backend contendo os nós e as arestas do grafo.
- */
 export interface GrafoResponse {
   nodes: GrafoNode[];
   links: GrafoLink[];
