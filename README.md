@@ -9,6 +9,8 @@ Conteúdo da Disciplina: Grafos Bipartidos<br>
 | 23/2037786 | Gustavo da Costa Cintra |
 | 21/1030765 | Guilherme Storch de Oliveira |
 
+> Vídeo de apresentação do projeto: < https://youtu.be/5xv8u8Fg1vE >
+
 ## Sobre
 O **TechGraph** é uma aplicação web que mapeia e visualiza de forma interativa a stack tecnológica de uma organização do GitHub. A solução coleta todos os repositórios da organização via API do GitHub e suas respectivas linguagens de programação, construindo um **Grafo Bipartido** onde:
 
