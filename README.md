@@ -22,15 +22,6 @@ O grafo é renderizado em **3D interativo** com física de força (*force-direct
 
 ![Demo](docs/demo.gif)
 
-**Dashboard — métricas e ranking de tecnologias**
-![Dashboard](docs/screenshot-dashboard.png)
-
-**Painel de controles — física, visual e filtros**
-![Controles](docs/screenshot-controls.png)
-
-**Busca — filtrando nós por tecnologia**
-![Busca](docs/screenshot-search.png)
-
 ## Instalação
 **Linguagem:** TypeScript<br>
 **Frameworks:** Bun · ElysiaJS (backend) · React + Vite (frontend)<br>
