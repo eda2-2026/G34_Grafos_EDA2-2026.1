@@ -19,14 +19,20 @@ const LINK_DIM    = 'rgba(50,55,90,0.15)';
 
 export function GraphVisualizer({ data, config, highlightIds, onNodeClick }: Props) {
   const fgRef = useRef<any>(null);
+  const didMount = useRef(false);
 
-  // Apply physics config reactively
+  // Apply physics config reactively — skip d3ReheatSimulation on first mount
+  // to avoid race where engineRunning=true before state.layout is initialized
   useEffect(() => {
     const fg = fgRef.current;
     if (!fg) return;
     fg.d3Force('charge')?.strength(config.chargeStrength);
     fg.d3Force('link')?.distance(config.linkDistance);
-    fg.d3ReheatSimulation?.();
+    if (didMount.current) {
+      fg.d3ReheatSimulation?.();
+    } else {
+      didMount.current = true;
+    }
   }, [config.chargeStrength, config.linkDistance]);
 
   const degree = useMemo(() => {
