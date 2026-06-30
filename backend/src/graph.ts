@@ -18,14 +18,8 @@ export function buildBipartiteGraph(
       label: repo.name,
       group: "repositorio",
       stars: repo.stargazers_count,
-      forks: repo.forks_count,
-      openIssues: repo.open_issues_count,
-      description: repo.description ?? undefined,
-      topics: repo.topics?.length > 0 ? repo.topics : undefined,
-      updatedAt: repo.updated_at,
-      archived: repo.archived || undefined,
-      githubUrl: repo.html_url,
       languagesInfo: Object.keys(languages).length > 0 ? languages : undefined,
+      githubUrl: repo.html_url,
     });
 
     for (const tech of Object.keys(languages)) {

@@ -35,6 +35,15 @@ export function GraphVisualizer({ data, config, highlightIds, onNodeClick }: Pro
     }
   }, [config.chargeStrength, config.linkDistance]);
 
+  // Adaptive charge strength: larger orgs need stronger repulsion to avoid overlap
+  useEffect(() => {
+    const fg = fgRef.current;
+    if (!fg) return;
+    const nodeCount = data.nodes.length;
+    const charge = Math.min(-30, -10 * Math.log2(Math.max(nodeCount, 2)));
+    fg.d3Force('charge')?.strength(charge);
+  }, [data.nodes.length]);
+
   const degree = useMemo(() => {
     const d: Record<string, number> = {};
     for (const link of data.links) {

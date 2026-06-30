@@ -14,6 +14,7 @@ export interface GrafoNode {
   archived?: boolean;
   githubUrl?: string;
   languagesInfo?: Record<string, number>;
+  githubUrl?: string;
 }
 
 export interface GrafoLink {

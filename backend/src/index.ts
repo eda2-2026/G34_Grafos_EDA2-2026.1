@@ -53,4 +53,4 @@ const app = new Elysia()
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
 
-export { app };
+export { app, cache };

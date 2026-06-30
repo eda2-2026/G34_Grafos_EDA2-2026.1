@@ -743,8 +743,17 @@ body {
 }
 .ctrl-reset:hover { color: var(--text); border-color: var(--border-hi); }
 
-/* ── Scrollbars ── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
+.github-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.github-link:hover { text-decoration: underline; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-hi); }
