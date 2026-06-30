@@ -1,0 +1,12 @@
+{
+  "name": "shared",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/types.ts",
+  "types": "src/types.ts",
+  "dependencies": {},
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "bun test"
+  }
+}
